@@ -5,29 +5,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.0.1] - 2026-07-06
+## [0.0.1] - 2026-07-07
 
 ### Added
 
-- Initial satellite package for Pumpwood static page containers on
-  Kubernetes.
-- ``PumpWoodStaticPagesMicroservice`` to render Deployment and Service
-  manifests for one static page image per instance.
-- YAML template ``deploy__app.yml`` with ClusterIP Service on port 80.
-- README with quick start, configuration reference, and prerequisites.
+- Initial satellite package for Pumpwood RabbitMQ-backed simple task workers
+  on Kubernetes.
+- **`PumpWoodSimpleTasksMicroservice`**: renders per-image Secret and
+  Deployment manifests for task containers without cloud storage access.
+- **`PumpWoodSimpleTasksWithStorageMicroservice`**: same Kubernetes
+  resources with storage env vars, volumes, and credential mounts for
+  tasks that read project buckets.
+- Kubernetes resource templates:
+  - ``secrets.yml`` — per-task microservice credentials
+  - ``deploy__task.yml`` — base task Deployment
+  - ``deploy__task_storage.yml`` — storage-enabled task Deployment
+- README with quick start, configuration reference, prerequisites, and
+  deployment flow diagram.
+- Project scaffolding: ``build.sh``, ``pyproject.toml``, generated API
+  documentation under ``docs/``, and Google Style module docstrings.
 
 ### Changed
 
-- Package metadata aligned to ``pumpwood-deploy-static-pages`` and module
-  ``pumpwood_deploy_static_pages`` (replacing incorrect datalake
-  scaffolding from the repository bootstrap).
-
-### Fixed
-
-- Service ``targetPort`` aligned with container port 80.
-- Broken ``deploy.py`` syntax and datalake-only manifest logic removed.
+- No changes.
 
 ### Removed
 
-- Datalake worker, secrets, and database deployment references from the
-  package API.
+- No removes.
